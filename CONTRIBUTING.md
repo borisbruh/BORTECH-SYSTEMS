@@ -65,4 +65,4 @@ Discord: [<https://discord.gg/pN3ZbzBvZB>](https://discord.gg/pN3ZbzBvZB)
     Please be respectful to everyone contributing to the project. Friendly discussions and constructive feedback help make the project better for everyone.
     License
 
-By contributing to this repository, you agree that your contributions will be open-source and its not "yours"
+By submitting a contribution, you agree that your contribution will be licensed under the same license as this repository.
