@@ -19,11 +19,12 @@ ALL FILES AND CODE ARE FREE FOR PERSONAL USE
 	practical infrastructure/tools (general everyday stuff)
 	
         > Keypads (MIKE MIKE CHARLIE DELTA XRAY VICTOR INDIA)
-        > Doors (general door, Garage door)
-        > Elavators / escalator
-        > NPC Cars
-        > a CS bomb lol?
-        > working fountain
+        > Doors (general doors, a Garage door)
+        > Elavators / escalators
+        > NPC's (cars and civilians)
+        > A CSGO/CS2 bomb lol?
+        > Working fountain
+
 
 	BORTECH GAMES:
 
@@ -78,7 +79,7 @@ ALL FILES AND CODE ARE FREE FOR PERSONAL USE
 		> Better transistors
 		> Novel methods of creating memory or combinational logic
 		> Optimizing existing modules
-		> Tank? Engine?
-		> new methods of doing xyz
+		> Tank? Engine? APACHE?
+		> New methods of doing xyz
 		> Experimenting
 		> EMP?
