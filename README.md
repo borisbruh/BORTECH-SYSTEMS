@@ -8,10 +8,12 @@ BORTECH SYSTEMS GITHUB
 
 
 	Directory / Folder structure:
+	
 
-	BORTECH SYSTEMS:
+	BORTECH GENERAL SYSTEMS:
 
 	practical infrastructure/tools (general everyday stuff)
+	
         > Keypads (MIKE MIKE CHARLIE DELTA XRAY VICTOR INDIA)
         > Doors (general door, Garage door)
         > Elavators / escalator
@@ -20,8 +22,11 @@ BORTECH SYSTEMS GITHUB
         > working video games / arcade games (space jet, 4 arrows movement)
         > working fountain
 
+
 	BORTECH MILITARY SYSTEMS:
-	    - military applications (its a mil-sim game after all)
+	
+	military applications (its a mil-sim game after all)
+	
 	        > CRAM
 	        > RAM (missle launcher)
 	        > Mortar Platform
@@ -32,24 +37,31 @@ BORTECH SYSTEMS GITHUB
 	        > Seeking missles (Javlin, Igla maybe)
 	        > Sub
 
+
 	BORTECH ADVANCED SYSTEMS:
 	    - reusable integrated modules (could overlap a bit)
 	        > Transistors
 	        > Logic gates
 	        > Memory cells
 	        > Timers
+
 	
 	BORTECH COMPLEX SYSTEMS:
-	    - experimental computing / high-complex projects
+	
+	experimental computing / high-complex projects
+		
 	        > Transistors
 	        > Logic gates
 	        > Circuits (4-BIT ADDER)
 	        > Clocks, Counters, timers
 	        > Integrated circuits (ALU, REGISTERS, MEMORY)
 	        > Complex circuits (CPU)
+
 	
 	BORTECH SYSTEMS R&D:
-	    - discovering new logic techniques
+	
+	discovering new logic techniques
+		
 	        > better transistors
 	        > Novel methods of creating memory or combinational logic
 	        > Optimizing existing modules
