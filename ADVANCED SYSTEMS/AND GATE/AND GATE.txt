@@ -1,3 +1,3 @@
 AND GATE
 
-how to make an and gate in RGE
+how to make an AND GATE in RGE
