@@ -642,7 +642,7 @@ Helicopters = false
 
 means:
 
-> Activate when a player **OR** a ground vehicle enters the detection area.
+Activate when a player **OR** a ground vehicle enters the detection area.
 
 Each linked trigger group checks its own whitelist independently.
 
@@ -923,9 +923,11 @@ A consistent naming convention is strongly recommended.
 
 The naming style itself should communicate what an object is used for.
 
+This is the naming convention that I use.
+
 ---
 
-## Trigger Groups — `lower_snake_case`
+## Movable Objects / Models — `lower_snake_case`
 
 Examples:
 
@@ -936,9 +938,11 @@ open_main_gate
 alarm
 ```
 
+This makes it immediately obvious that the object is intended to be manipulated/moved.
+
 ---
 
-## Movable Objects / Models — `UPPER_SNAKE_CASE`
+## Trigger Groups — `UPPER_SNAKE_CASE`
 
 Examples:
 
@@ -948,8 +952,6 @@ HEAD
 LEFT_GATE
 CAR_DOOR
 ```
-
-This makes it immediately obvious that the object is intended to be manipulated/moved.
 
 ---
 
@@ -978,6 +980,14 @@ More importantly, names should be:
 * Descriptive
 * Consistent
 * Stable between map/server loads
+
+---
+
+Before you move on, you should read [RGE Programming Model](https://github.com/borisbruh/BORTECH-SYSTEMS/new/main/GUIDES/RGE Programming Model.md), it will make understanding all of RGE trigger systems and commands, much easier.
+
+It goes over how they all tie in together and connect to make programs.
+
+After you have read that, the following will be much easier to understand.
 
 ---
 
