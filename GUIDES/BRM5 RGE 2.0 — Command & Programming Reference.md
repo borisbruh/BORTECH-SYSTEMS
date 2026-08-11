@@ -2506,7 +2506,7 @@ The loop then stops.
 | `trigger`              | 🟢 Core behavior documented                   |
 | `trigger removebutton` | 🟢 Verified in-game                           |
 | `wait`                 | 🟢 Documented                                 |
-| `explosion`            | 🟢 documented                                 |
+| `explosion`            | 🟢 Documented                                 |
 | `reset`                | 🟢 Documented                                 |
 | `undo`                 | ℹ️ User-only                                  |
 
