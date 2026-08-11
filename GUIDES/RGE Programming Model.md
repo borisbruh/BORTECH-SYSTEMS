@@ -24,8 +24,9 @@ firstly going over some common programming vocabulary that will be used in the f
 | **Activation**            | The event that causes a TG to begin executing                     |
 | **Reset**                 | Returns a TG to a state where it can be activated again           |
 | **Looping**               | Causes a TG to repeat according to its configuration              |
-| **UID**                   | Runtime identifier for an object                                  |
+| **UID**                   | Runtime unique identifier for an object                           |
 | **Name**                  | Human-readable identifier used by applicable commands             |
+| **Command (cmd)**         | A console command; tween, move, color, trigger, material          |
 
 
 ---
@@ -88,11 +89,11 @@ Door Button Trigger
 
 The important distinction is that the button itself does not contain the door's behaviour.
 
-The button provides the event.
+The button provides the event and the object hosts the link to the TG.
 
-The Trigger Group contains the behaviour.
+The Trigger Group contains the behaviour, the lines of cmds.
 
-The executable commands perform the actions.
+The executable cmds perform the actions.
 
 
 
@@ -129,13 +130,13 @@ For example:
 Door
 ```
 
-can be moved, resized, recolored, hidden, etc.
+can be moved, resized, recolored, deleted, material changed, etc.
 
 - - -
 
 # Triggers
 
-A Trigger is an object/event that can cause a Trigger Group to activate.
+A Trigger is an object that hosts detection, interaction and the link to activate a Trigger Group.
 
 Examples include:
 
@@ -164,7 +165,7 @@ This means one event can cause multiple independent behaviours.
 
 # Trigger Groups
 
-A Trigger Group is an ordered sequence of executable commands.
+A Trigger Group is an ordered sequence of executable commands. You can think of it similar to a function, just holds commands to be executed.
 
 For example:
 
@@ -174,7 +175,8 @@ Door_Open
 1. tween Door ...
 2. wait 5
 3. tween Door ...
-4. reset ...
+4. wait 5
+5. reset ...
 ```
 
 When the Trigger Group activates, its executable commands are processed in order.
@@ -185,7 +187,7 @@ Trigger Groups are therefore the closest equivalent to a program/script within R
 
 # Executable Commands
 
-Executable commands are the individual actions performed by a Trigger Group.
+Executable commands are the individual actions performed by cmds in a TG.
 
 For example:
 
@@ -196,7 +198,7 @@ move
 ...
 ```
 
-A Trigger Group can combine multiple commands to create more complex behaviour.
+A TG can combine multiple commands to create more complex behaviour.
 
 For example:
 
@@ -208,7 +210,7 @@ For example:
 5. tween Door_Right → closed
 ```
 
-The result is a complete door sequence despite there being no traditional "door script."
+The result is a complete door sequence despite there being no traditional "door script".
 
 - - -
 
@@ -235,10 +237,10 @@ EVENT
 Player enters detection area
         ↓
 TRIGGER
-Player detection trigger
+Detection trigger activates the linked TG
         ↓
 LOGIC
-Door_Open Trigger Group
+Door_Open TG gets activated and begins executing its lines
         ↓
 COMMANDS
 Tween door open
@@ -251,18 +253,18 @@ Door physically opens and closes
 
 This distinction is important because an event and an action are not necessarily the same thing.
 
-A trigger can activate a Trigger Group without directly performing the final action itself.
+A trigger can activate a TG, so the trigger doesn't directly perform the final action itself.
 
 - - -
 
 ## 4. Trigger Group Execution
 
-When a Trigger Group activates, its executable commands run in their configured order.
+When a TG activates, its executable commands run in their configured order.
 
 For example:
 
 ```text
-Trigger Group: Test
+Trigger Group: TESTING_STUFF
 
 1. command A
 2. command B
@@ -279,14 +281,14 @@ B
 C
 ```
 
-Only 1 command, "wait" can affect when subsequent commands execute. All other commands execute basically instantly.
+Only 1 command, "wait" can affect when subsequent commands execute. All other commands execute basically instantly, one after the other.
 
 For example:
 
 ```text
 1. tween Door 3 seconds
 2. wait 5 seconds
-3. tween Door 3 seconds
+3. tween Door 5 seconds
 5. wait 5 seconds
 ```
 
@@ -307,7 +309,7 @@ CLOSE
 
 after the 5 seconds wait, instantly tween command executes, which starts the animation
                                                          ▼
-|─|─|───────────────────────────────────────────────────|+|─|───── 3 second animation ─────►|────────────────────|─|
+|─|─|───────────────────────────────────────────────────|+|─|───── 5 second animation ──────────────────────────►|─|
 
 instantly after, wait command executes, which starts wait timer
                                                            ▼
@@ -318,7 +320,7 @@ instantly after, wait command executes, which starts wait timer
 
 Trigger Groups have their own state.
 
-A Trigger Group will become INACTIVE when triggered and will need to be reset before it can be activated normally again.
+A Trigger Group will become INACTIVE when activated and will need to be reset before it can be activated normally again.
 
 For example:
 
@@ -356,16 +358,18 @@ Closes
 Reset TG
 ```
 
-## 6. Trigger Groups as Functions or Small Programs
+## 6. Trigger Groups are functions or Small Programs
 
 A useful way to think about a Trigger Group is:
 
-A Trigger Group is a function or small RGE program that runs when a linked trigger activates it.
+A Trigger Group is a function or small RGE program / embedded system that runs when a linked trigger activates it.
+And you can also have them infinitely looping by setting the whitelist IsLooping to true.
 
 For example:
 
 ```text
-TG: Emergency_Lights
+Trigger Group: Emergency_Lights
+Whitelist: IsLooping = true
 
 1. Color Light_A Red
 2. Color Light_B Red
@@ -375,18 +379,17 @@ TG: Emergency_Lights
 6. Color Light_B Dim-Red
 7. Color Light_C Dim-Red
 8. Wait 1
-9. ...
 ```
 
 A more complicated system can use multiple Trigger Groups:
 
 ```text
-             ┌──► TG - Door_Open
+             ┌──► TG - Door_Open    ───► TG - Door_Close
 Button ──────┤
              └──► TG - Door_Lights
 ```
 
-This allows individual pieces of behaviour to be separated rather than putting everything into one enormous Trigger Group.
+This allows individual pieces of behaviour to be separated rather than putting everything into one enormous TG.
 
 - - -
 
