@@ -1,4 +1,4 @@
-if you haven't read the the first part of [BRM5 RGE 2.0 — Command & Programming Reference.md](https://github.com/borisbruh/BORTECH-SYSTEMS/edit/main/GUIDES/BRM5%20RGE%202.0%20%E2%80%94%20Command%20%2526%20Programming%20Reference.md). 
+if you haven't read the the first part of [BRM5 RGE 2.0 — Command & Programming Reference.md](https://github.com/borisbruh/BORTECH-SYSTEMS/main/GUIDES/BRM5%20RGE%202.0%20%E2%80%94%20Command%20%2526%20Programming%20Reference.md). 
 
 I would recommend reading that part first before reading this.
 
