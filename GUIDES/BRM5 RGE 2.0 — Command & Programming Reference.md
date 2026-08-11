@@ -985,7 +985,7 @@ More importantly, names should be:
 
 The following sections document the known commands.
 
-There is a great [open-source BRM5 commands IDE](https://triple-alt.github.io/brm5-command-editor/editor.html)
+There is a great [open-source BRM5 commands IDE by triple-alt](https://triple-alt.github.io/brm5-command-editor/editor.html)
 it can used as a secondary reference for command syntax and currently documents almost all commands
 
 > **Important:** The IDE is not treated as the final authority on undocumented/hidden behavior. In-game testing takes precedence where the two differ.
@@ -1676,7 +1676,7 @@ Position: {1, 10, 1}
 Rotation: {0, 180, 0}
 ```
 
-> **Note:** The behavior and available prop names are partly inferred because `spawn` is a hidden command. The open-source editor contains a prop enumeration and documents the command as spawning a specified prop at a position/rotation.
+> **Note:** The behavior and available prop names are partly inferred because `spawn` is a hidden command. The open-source IDE contains a prop enumeration and documents the command as spawning a specified prop at a position/rotation. [A thread in the RGE Library discord server](https://discord.com/channels/1494569291557634088/1496857552179429386/threads/1530012926197629008) which has a large list of hidden props.
 
 ---
 
@@ -1917,8 +1917,6 @@ and:
 IsButton = false
 ```
 
-unless a button is subsequently added.
-
 The object becomes:
 
 * Collision-less
@@ -1933,7 +1931,7 @@ The object becomes:
 trigger addbutton [world:number>0] [uid/%name:string]
 ```
 
-Makes a trigger object interactable by players.
+Makes a trigger object also interactable by players.
 
 Requires:
 
@@ -1941,7 +1939,7 @@ Requires:
 IsTrigger = true
 ```
 
-The player receives an `F` interaction prompt.
+The player will see an `F` interaction prompt near the center of the trigger object.
 
 ---
 
@@ -1985,7 +1983,7 @@ IsTrigger = false
 IsButton = false
 ```
 
-and restores normal character/bullet collisions.
+and restores normal character/bullet collisions and transparency to 0.
 
 ---
 
@@ -2049,9 +2047,9 @@ If `IsTrigger` is later enabled again, the previous trigger-group link remains.
 trigger activate [world:number>0] [triggerGroup:string]
 ```
 
-Manually activates a trigger group.
+Activates a trigger group.
 
-This can be done even when its status is `Inactive`.
+This does nothing when its status is `Inactive`.
 
 ---
 
@@ -2066,6 +2064,11 @@ Resets a trigger group to:
 ```text
 Active
 ```
+
+### Important
+
+if a line in a trigger group is "reset", and there are more lines of commands after the "reset" line, then the reset will not work
+the trigger group will go back to status `Inactive` and continue to execute the rest of the lines of commands
 
 ---
 
@@ -2205,7 +2208,7 @@ wait 3
 **Creates an explosion at a position.**
 
 ```text
-explosion [radius:number] [damage:number] [pX:number] [pY:number] [pZ:number] [type:string{GroundVehicle,Motar,ObjBig,RPG7v2,Mine,Flash,Breach,Igla,C4,HelicopterVehicle,Grenade,None}]
+explosion [radius:number] [damage:number] [pX:number] [pY:number] [pZ:number] [type:string]
 ```
 
 Known target types:
@@ -2240,13 +2243,13 @@ Position: {0, 0, 0}
 Target: GroundVehicle
 ```
 
-The command editor confirms the six-argument structure and target enumeration.
+Explosions can damage players, bots vehicles. From testing Players have 100 hp.
 
 ---
 
 # 46. Reset
 
-`reset` has two different contexts and should not be confused.
+`reset` can only be used in trigger-group lines.
 
 ## Trigger-group line
 
@@ -2263,20 +2266,6 @@ This returns its status to:
 ```text
 Active
 ```
-
----
-
-## Console
-
-The command editor documents `reset` as a global scene reset:
-
-```text
-reset
-```
-
-> ⚠️ The exact distinction between console-level `reset` and trigger-group `reset` should be tested further before relying on it in permanent systems.
-
-The editor currently describes the command as resetting the entire scene to its default state.
 
 ---
 
@@ -2493,7 +2482,7 @@ The loop then stops.
 | `firstperson`          | 🟢 Documented                                 |
 | `vehiclespawning`      | 🟢 Documented                                 |
 | `compounds`            | 🟢 Documented                                 |
-| `friendlyfire`         | 🟡 Needs syntax verification                  |
+| `friendlyfire`         | 🟢 Documented                                 |
 | `hud`                  | 🟢 Documented                                 |
 | `revive`               | 🟢 Documented                                 |
 | `squadspawn`           | 🟢 Documented                                 |
@@ -2517,8 +2506,8 @@ The loop then stops.
 | `trigger`              | 🟢 Core behavior documented                   |
 | `trigger removebutton` | 🟢 Verified in-game                           |
 | `wait`                 | 🟢 Documented                                 |
-| `explosion`            | 🟢 Syntax documented                          |
-| `reset`                | 🟡 Context-dependent behavior needs testing   |
+| `explosion`            | 🟢 documented                                 |
+| `reset`                | 🟢 Documented                                 |
 | `undo`                 | ℹ️ User-only                                  |
 
 ---
@@ -2691,7 +2680,7 @@ Examples:
 * Trigger-group execution behavior
 * `IsLooping`
 * `trigger executable` client restriction
-* Trigger links surviving `IsTrigger` removal
+* Trigger-group links surviving `IsTrigger` removal
 
 ### 🔵 IDE/source documented
 
@@ -2716,19 +2705,5 @@ This distinction is important because the external editor is a **command editor/
 ---
 
 # Final Note
-
-This document is intended to evolve as more RGE behavior is tested.
-
-When uncertain, prefer:
-
-```text
-In-game behavior
-    >
-RGE command behavior documented by testing
-    >
-Open-source IDE/reference
-    >
-Assumption
-```
 
 The goal is not merely to list commands, but to build an accurate model of how **RGE actually behaves** so that increasingly complex trigger systems and programs can be written reliably.
