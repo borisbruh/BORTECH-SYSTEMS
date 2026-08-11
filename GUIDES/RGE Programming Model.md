@@ -13,26 +13,44 @@ Otherwise here's how you combine those commands to make RGE do shit.
 firstly going over some common programming vocabulary that will be used in the following doc.
 
 
-| Term                      | Meaning                                                           |
-| ------------------------- | ----------------------------------------------------------------- |
-| **Object**                | A physical entity that can be manipulated by RGE                  |
-| **Trigger**               | An Object that hosts Detection, Interaction and the link(s) to TG(s)|
-| **Interaction**           | An event caused by a player interacting and pressing "f"          |
-| **Detection**             | An event caused by an entity being detected in the detection area |
-| **Trigger Group (TG)**    | An ordered collection of executable commands                      |
-| **Executable**            | A command executed by a line in a TG                              |
-| **Activation**            | The event that causes a TG to begin executing                     |
-| **Reset**                 | Returns a TG to a state where it can be activated again           |
-| **Looping**               | Causes a TG to repeat according to its configuration              |
-| **UID**                   | Runtime unique identifier for an object                           |
-| **Name**                  | Human-readable identifier used by applicable commands             |
-| **Command (cmd)**         | A console command; tween, move, color, trigger, material          |
+| Term                      | Meaning                                                            |
+| ------------------------- | ------------------------------------------------------------------ |
+| **Object (obj)**          | A physical entity that can be manipulated by RGE                   |
+| **Trigger Object**        | An Obj made to host Detection, Interaction and the link(s) to TG(s)|
+| **Interaction**           | A Player pressing "f" on a button trigger                          |
+| **Detection**             | An entity entering the trigger object's detection volume.          |
+| **Trigger Group (TG)**    | An ordered collection of executable commands                       |
+| **Executable**            | A command executed by a line in a TG                               |
+| **Activation**            | The event that causes a TG to begin executing                      |
+| **Reset**                 | Returns a TG to a state where it can be activated again            |
+| **Looping**               | Causes a TG to repeat according to its configuration               |
+| **UID**                   | Runtime unique identifier for an object in the form of a hash      |
+| **Name**                  | Human-readable identifier used by applicable commands              |
+| **Command (cmd)**         | A console command; tween, move, color, trigger, material           |
+
+
+- - -
+
+
+> [!IMPORTANT]
+> ### Trigger Objects vs Trigger Groups
+>
+> A Trigger Object is an object in the world that can detect entities
+> and/or receive player interaction.
+>
+> A Trigger Group is a separate programmable sequence of executable
+> commands.
+>
+> A Trigger Object does not contain the executable commands.
+> It links to Trigger Groups which contain them.
+
+
 
 
 ---
 
 
-### RGE Programming Model
+# RGE Programming Model
 
 ## 1. What RGE Programming Actually Is
 
@@ -66,7 +84,7 @@ EXECUTABLE COMMANDS
 OBJECT STATES CHANGES
 ```
 
-# Example
+### Example
 
 A button-controlled door could be structured as:
 
@@ -103,7 +121,7 @@ Objects, Triggers, Trigger Groups (TG), Executable Commands
 
 - - -
 
-# Objects
+### Objects
 
 Objects are the things being manipulated by RGE.
 
@@ -134,7 +152,7 @@ can be moved, resized, recolored, deleted, material changed, etc.
 
 - - -
 
-# Triggers
+### Triggers
 
 A Trigger is an object that hosts detection, interaction and the link to activate a Trigger Group.
 
@@ -163,7 +181,7 @@ This means one event can cause multiple independent behaviours.
 
 - - -
 
-# Trigger Groups
+### Trigger Groups
 
 A Trigger Group is an ordered sequence of executable commands. You can think of it similar to a function, just holds commands to be executed.
 
@@ -185,7 +203,7 @@ Trigger Groups are therefore the closest equivalent to a program/script within R
 
 - - -
 
-# Executable Commands
+### Executable Commands
 
 Executable commands are the individual actions performed by cmds in a TG.
 
@@ -234,7 +252,7 @@ Example: Automatic Door
 
 ```text
 EVENT
-Player enters detection area
+Player enters detection volume
         ↓
 TRIGGER
 Detection trigger activates the linked TG
@@ -281,7 +299,15 @@ B
 C
 ```
 
-Only 1 command, "wait" can affect when subsequent commands execute. All other commands execute basically instantly, one after the other.
+A few very important distinctions to make tho:
+
+All commands execute instantaneously.
+
+"tween" is the only command that after execution, continues asynchronously in the background, but after it the next cmd is immediately executed.
+
+"wait" is the only command that intentionally pauses Trigger Group execution.
+
+All other cmds execute instantaneously and complete instantaneously, such as; move, color, trigger, material etc.
 
 For example:
 
@@ -329,11 +355,11 @@ ACTIVE
    │
    │ trigger activates TG
    ▼
-INACTIVE / EXECUTING
+INACTIVE (executing)
    │
    │ commands finish
    ▼
-[STATE DEPENDS ON TG CONFIGURATION]
+INACTIVE (done executing)
    │
    │ reset
    ▼
@@ -360,9 +386,14 @@ Reset TG
 
 ## 6. Trigger Groups are functions or Small Programs
 
-A useful way to think about a Trigger Group is:
 
-A Trigger Group is a function or small RGE program / embedded system that runs when a linked trigger activates it.
+
+A Trigger Group can be thought of as being similar to a function or small program / embedded system that runs when a linked trigger activates it.
+
+> This is an analogy, not an indication that RGE supports
+> traditional function semantics, parameters, return values,
+> local variables, or recursion.
+
 And you can also have them infinitely looping by setting the whitelist IsLooping to true.
 
 For example:
@@ -451,12 +482,12 @@ For example, when building a door:
 ```text
 DEFINE REQUIREMENTS
 ├── Door object, size {0.5, 8, 4}
-├── Detection trigger, area {10, 10, 10}
+├── Detection trigger, volume {10, 10, 10}
 └── Desired opened & closed positions, move door position {X, Y, Z}.
 
 BUILD
 ├── Create/Design & Configure Door
-└── Create Detection Trigger Area
+└── Create Detection Trigger Volume
 
 PROGRAM
 ├── Create & Configure Door_Open TG 
@@ -473,7 +504,7 @@ CONNECT
 └── Button → Door_Open
 
 TEST
-├── Test Detection area
+├── Test Detection Volume
 ├── Verify opening
 ├── Verify timing
 ├── Verify closing
@@ -481,6 +512,97 @@ TEST
 ```
 
 - - -
+
+
+
+I've went over what can be done (almost anything btw).
+Ill now go over what cannot be done
+
+## RGE Programming Limitations
+
+RGE is not a general-purpose scripting language.
+
+The current documented model does not provide traditional:
+
+- Variables
+- Functions with arguments
+- Return values
+- Conditional statements, so no "if"
+- Loops using a conventional programming syntax
+- Arithmetic expressions, so no math
+- Boolean expressions
+- No randomness (but pseudo-randomness does exist)
+- A TG has no idea what its doing, it just gets told to run, it asks no questions
+- No state querying, you just have to interpret what state it should/might/could be in
+- Cmds give no "feedback", as in, if you whitelist player true a trigger object, and its already true, console will just say, "Successfully changed", no matter what state it was previously
+
+Instead, state and logic are generally represented through:
+
+- Object properties
+- Trigger Group status
+- Trigger whitelists
+- Multiple Trigger Groups
+- Trigger activation
+- Object positions/properties
+- Looping TGs
+
+
+All simple and complex RGE programs are just pre-programmed states that can be switched between.
+
+
+
+Let me set out a simple example:
+
+```text
+Lets say you want to have a door that opens to 2 different positions,
+depending on if a player is detected, smaller opening,
+or is a ground vehicle is detected, larger opening.
+
+You (currently) **cannot** have 1 Trigger Group do both,
+and just tell it to open however much depending on what is detected.
+
+To achieve this behaviour you would need:
+2 Trigger Groups; "OPEN_PLAYER" & "OPEN_GROUND_VEHICLE"
+```
+
+
+
+Now for a more complex example:
+
+```text
+In the repo you will find a mortar platform made by me
+
+the mortar's elevation can be adjusted, in intervals of 5 degress, from 45 degrees to 75.
+so that's 7 different states: 45, 50, 55, 60, 65, 70 & 75 degrees.
+each needed positions to be found and ofc coded
+now then I wanted some azimuth (sideways) movement as well for MK. II
+so I added 2.5 degrees azimuth rotation to the mortar, both ways
+so now there are 7 * 3 = 21 states, which need positions and to be coded
+now that may not sound too difficult until you find out that the mortar isn't 1 piece
+There are like roughly 8 objects/models/groups,
+so now is becomes 21 * 8 = 168 different positions that all need to be found and coded.
+And I haven't even gotten into niche/specific states that require other states to be a specific state
+and that's how quickly work explodes
+and how you start to get very spaghetti code
+
+and there is no debugger, not even good old print statements
+and the console will only tell you if a cmds is incorrectly typed
+or if a UID# doesn't exist, which usually means something is missing or again a typo.
+
+essentially debugging RGE Trigger Group lines, manually, is a very bad experience
+
+```
+
+
+But, even with these, honestly, extreme conditions (the biggest thing I think is; no "if" or conditional cmd / statement / argument),
+I still believe that anything can be made in RGE, given enough time.
+
+
+
+
+
+---
+
 
 now that you hopefully know and understand how programs work and are made in RGE.
 Reading the rest of [BRM5 RGE 2.0 — Command %26 Programming Reference.md#rge-programming-model](https://github.com/borisbruh/BORTECH-SYSTEMS/blob/main/GUIDES/BRM5%20RGE%202.0%20%E2%80%94%20Command%20%26%20Programming%20Reference.md#rge-programming-model) should hopefully be much easier.
