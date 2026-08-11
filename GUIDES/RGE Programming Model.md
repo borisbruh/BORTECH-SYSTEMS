@@ -455,3 +455,8 @@ TEST
 ```
 
 - - -
+
+now that you hopefully know and understand how programs work and are made in RGE.
+Reading the rest of [BRM5 RGE 2.0 — Command %26 Programming Reference.md#rge-programming-model](https://github.com/borisbruh/BORTECH-SYSTEMS/blob/main/GUIDES/BRM5%20RGE%202.0%20%E2%80%94%20Command%20%26%20Programming%20Reference.md#rge-programming-model) should hopefully be much easier.
+
+I hope you enjoy reading the rest.
