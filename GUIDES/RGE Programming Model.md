@@ -452,7 +452,7 @@ For example, when building a door:
 DEFINE REQUIREMENTS
 ├── Door object, size {0.5, 8, 4}
 ├── Detection trigger, area {10, 10, 10}
-└── Desired opened & closed positions, move door by 5 stds sideways.
+└── Desired opened & closed positions, move door position {X, Y, Z}.
 
 BUILD
 ├── Create/Design & Configure Door
@@ -473,7 +473,7 @@ CONNECT
 └── Button → Door_Open
 
 TEST
-├── Enter Detection area
+├── Test Detection area
 ├── Verify opening
 ├── Verify timing
 ├── Verify closing
