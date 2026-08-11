@@ -22,6 +22,7 @@
 * [8. Trigger Whitelists](#8-trigger-whitelists)
 * [9. Trigger Execution](#9-trigger-execution)
 * [10. Naming Convention](#10-naming-convention)
+* [ - RGE Programming Model -](#RGE-Programming-Model)
 * [11. Command Reference](#11-command-reference)
 * [12. File](#12-file)
 * [13. World](#13-world)
@@ -983,7 +984,9 @@ More importantly, names should be:
 
 ---
 
-Before you move on, you should read [RGE Programming Model](https://github.com/borisbruh/BORTECH-SYSTEMS/new/main/GUIDES/RGE Programming Model.md), it will make understanding all of RGE trigger systems and commands, much easier.
+## RGE Programming Model
+
+Before you move on, you should read [RGE Programming Model](https://github.com/borisbruh/BORTECH-SYSTEMS/new/main/GUIDES/RGE%20Programming%20Model.md), it will make understanding all of RGE trigger systems and commands, much easier.
 
 It goes over how they all tie in together and connect to make programs.
 
