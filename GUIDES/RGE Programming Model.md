@@ -6,6 +6,29 @@ I would recommend reading that part first before reading this.
 
 Otherwise here's how you combine those commands to make RGE do shit.
 
+---
+
+### RGE Programming Vocabulary
+
+firstly going over some common programming vocabulary that will be used in the following doc.
+
+
+| Term                      | Meaning                                                           |
+| ------------------------- | ----------------------------------------------------------------- |
+| **Object**                | A physical/interactive entity manipulated by RGE                  |
+| **Trigger**               | An event/condition capable of activating behaviour                |
+| **Interaction**           | An event caused by a player interacting and press "f"             |
+| **Detection**             | An event caused by an entity being detected in the detection area |
+| **Trigger Group (TG)**    | An ordered collection of executable commands                      |
+| **Executable**            | A command executed by a line in a TG                              |
+| **Activation**            | The event that causes a TG to begin executing                     |
+| **Reset**                 | Returns a TG to a state where it can be activated again           |
+| **Looping**               | Causes a TG to repeat according to its configuration              |
+| **UID**                   | Runtime identifier for an object                                  |
+| **Name**                  | Human-readable identifier used by applicable commands             |
+
+
+---
 
 
 ### RGE Programming Model
