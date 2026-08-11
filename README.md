@@ -23,7 +23,7 @@ CREATING, SHARING, LEARNING
 
 
 
-Good day, it means a lot that your reading this. This project is a WIP so many things are currently missing.
+Yo, it means a lot that your reading this. This project is a WIP so many things are currently missing.
 But that just means your here in time to contibute and make RGE much better for everyone, including yourself.
 
 
