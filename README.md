@@ -1,6 +1,8 @@
 # BORTECH-SYSTEMS
 BORTECH SYSTEMS GITHUB
 
+Logic Engineering in PL5's BRM5 RGE
+
 CREATING, SHARING, LEARNING
 
 
@@ -24,7 +26,7 @@ CREATING, SHARING, LEARNING
 
 
 Yo, it means a lot that your reading this. This project is a WIP so many things are currently missing.
-But that just means your here in time to contibute and make RGE much better for everyone, including yourself.
+But that just means your here in time to contribute and make RGE much better for everyone, including yourself.
 
 
 
