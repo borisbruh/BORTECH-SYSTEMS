@@ -15,9 +15,9 @@ firstly going over some common programming vocabulary that will be used in the f
 
 | Term                      | Meaning                                                           |
 | ------------------------- | ----------------------------------------------------------------- |
-| **Object**                | A physical/interactive entity manipulated by RGE                  |
-| **Trigger**               | An event/condition capable of activating behaviour                |
-| **Interaction**           | An event caused by a player interacting and press "f"             |
+| **Object**                | A physical entity that can be manipulated by RGE                  |
+| **Trigger**               | An Object that hosts Detection, Interaction and the link(s) to TG(s)|
+| **Interaction**           | An event caused by a player interacting and pressing "f"          |
 | **Detection**             | An event caused by an entity being detected in the detection area |
 | **Trigger Group (TG)**    | An ordered collection of executable commands                      |
 | **Executable**            | A command executed by a line in a TG                              |
