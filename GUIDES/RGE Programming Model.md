@@ -139,7 +139,7 @@ This means one event can cause multiple independent behaviours.
 
 - - -
 
-Trigger Groups
+# Trigger Groups
 
 A Trigger Group is an ordered sequence of executable commands.
 
@@ -160,7 +160,7 @@ Trigger Groups are therefore the closest equivalent to a program/script within R
 
 - - -
 
-Executable Commands
+# Executable Commands
 
 Executable commands are the individual actions performed by a Trigger Group.
 
