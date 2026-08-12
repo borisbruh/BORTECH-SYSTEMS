@@ -956,15 +956,15 @@ CAR_DOOR
 
 ---
 
-## Trigger-Linked Objects — `CamelCase`
+## Trigger-Linked Objects — `Camel_Snake_Case`
 
 Examples:
 
 ```text
-CarSteeringWheelRight
+Car_Steering_Wheel_Right
 Chair
-DoorButton
-DetectionArea
+Door_Button
+Detection_Area
 ```
 
 This makes trigger-related objects distinguishable from ordinary movable objects.
