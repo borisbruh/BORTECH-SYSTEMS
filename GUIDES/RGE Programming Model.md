@@ -15,11 +15,11 @@ firstly going over some common programming vocabulary that will be used in the f
 
 | Term                      | Meaning                                                            |
 | ------------------------- | ------------------------------------------------------------------ |
-| **Object (obj)**          | A physical entity that can be manipulated by RGE                   |
-| **Trigger Object**        | An Obj made to host Detection, Interaction and the link(s) to TG(s)|
-| **Interaction**           | A Player pressing "f" on a button trigger                          |
-| **Detection**             | An entity entering the trigger object's detection volume.          |
+| **Object (OBJ)**          | A physical entity that can be manipulated by RGE                   |
+| **Trigger Object (TOBJ)** | An OBJ made to host Detection, Interaction and the link(s) to TG(s)|
 | **Trigger Group (TG)**    | An ordered collection of executable commands                       |
+| **Interaction**           | A Player pressing "f" on a TOBJ                                    |
+| **Detection**             | An entity entering the trigger object's detection volume.          |
 | **Executable**            | A command executed by a line in a TG                               |
 | **Activation**            | The event that causes a TG to begin executing                      |
 | **Reset**                 | Returns a TG to a state where it can be activated again            |
@@ -61,13 +61,9 @@ Unlike a traditional programming language such as Lua, RGE does not primarily us
 A typical RGE system can be thought of as:
 
 ```text
-OBJECTS
+TRIGGER OBJECTS
   │
-  │ player interaction / entity detection
-  ▼
-TRIGGERS
-  │
-  │ activation
+  │ activation from player interaction / entity detection from a trigger object
   ▼
 TRIGGER GROUP
   │
@@ -117,11 +113,11 @@ The executable cmds perform the actions.
 
 ## 2. The Four Main Components
 
-Objects, Triggers, Trigger Groups (TG), Executable Commands
+Objects, Triggers Objects (TOBJ), Trigger Groups (TG), Executable Commands
 
 - - -
 
-### Objects
+### Objects (1/4)
 
 Objects are the things being manipulated by RGE.
 
@@ -152,9 +148,9 @@ can be moved, resized, recolored, deleted, material changed, etc.
 
 - - -
 
-### Triggers
+### Trigger Objects (2/4)
 
-A Trigger is an object that hosts detection, interaction and the link to activate a Trigger Group.
+A Trigger Objects is an object that hosts detection, interaction and the link(s) to activate Trigger Groups.
 
 Examples include:
 
@@ -165,7 +161,7 @@ Vehicle detection
 Other trigger conditions
 ```
 
-A Trigger can be connected to one or more Trigger Groups.
+A Trigger Object can be connected to one or more Trigger Groups.
 
 Conceptually:
 
@@ -181,7 +177,7 @@ This means one event can cause multiple independent behaviours.
 
 - - -
 
-### Trigger Groups
+### Trigger Groups (3/4)
 
 A Trigger Group is an ordered sequence of executable commands. You can think of it similar to a function, just holds commands to be executed.
 
@@ -203,7 +199,7 @@ Trigger Groups are therefore the closest equivalent to a program/script within R
 
 - - -
 
-### Executable Commands
+### Executable Commands (4/4)
 
 Executable commands are the individual actions performed by cmds in a TG.
 
@@ -237,11 +233,9 @@ The result is a complete door sequence despite there being no traditional "door 
 A useful way to understand RGE is:
 
 ```text
-EVENT
+EVENT by TRIGGER OBJECT
   ↓
-TRIGGER
-  ↓
-TRIGGER GROUP
+TRIGGER GROUP ACTIVATION
   ↓
 COMMAND SEQUENCE
   ↓
@@ -251,14 +245,11 @@ ACTION
 Example: Automatic Door
 
 ```text
-EVENT
-Player enters detection volume
-        ↓
-TRIGGER
-Detection trigger activates the linked TG
+EVENT by TOBJ
+Player enters detection volume and activates the linked TG
         ↓
 LOGIC
-Door_Open TG gets activated and begins executing its lines
+Door_Open TG gets activated and begins executing its cmd lines
         ↓
 COMMANDS
 Tween door open
@@ -266,12 +257,12 @@ Wait
 Tween door closed
         ↓
 ACTION
-Door physically opens and closes
+Door physically moves "open" and moves "closed"
 ```
 
 This distinction is important because an event and an action are not necessarily the same thing.
 
-A trigger can activate a TG, so the trigger doesn't directly perform the final action itself.
+A TOBJ can activate a TG, so the TOBJ doesn't directly perform the final action itself.
 
 - - -
 
@@ -292,18 +283,18 @@ Trigger Group: TESTING_STUFF
 will execute conceptually as:
 
 ```text
-A
+A first
 ↓
-B
+B second
 ↓
-C
+C third
 ```
 
 A few very important distinctions to make tho:
 
 All commands execute instantaneously.
 
-"tween" is the only command that after execution, continues asynchronously in the background, but after it the next cmd is immediately executed.
+"tween" is the only command that after execution, continues asynchronously in the background, but the next cmd after it, is immediately executed.
 
 "wait" is the only command that intentionally pauses Trigger Group execution.
 
@@ -353,7 +344,7 @@ For example:
 ```text
 ACTIVE
    │
-   │ trigger activates TG
+   │ TOBJ activates TG
    ▼
 INACTIVE (executing)
    │
