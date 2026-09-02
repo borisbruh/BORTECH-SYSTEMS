@@ -281,7 +281,7 @@ Example:
 or:
 
 ```text
-%A_PART
+%a_part
 ```
 
 ---
