@@ -928,7 +928,7 @@ This is the naming convention that I use.
 
 ---
 
-## Movable Objects / Models — `lower_snake_case`
+## Objects / Models — `lower_snake_case`
 
 Examples:
 
@@ -939,7 +939,7 @@ open_main_gate
 alarm
 ```
 
-This makes it immediately obvious that the object is intended to be manipulated/moved.
+This makes it immediately clear that the object is intended to be manipulated/moved.
 
 ---
 
