@@ -141,7 +141,11 @@ Example:
 1
 ```
 
-The exact maximum world number is currently unknown.
+The maximum world number is between $1.798 \cdot 10^{308}$ and $1.7985 \cdot 10^{308}$, which matches with the maximum value of a floating point double. above this value it will default to inf.
+
+Unfortunately these worlds are not very useful as behavior begins to break down above 10^20.
+
+(How and when behavior breaks down should be studied in more detail)
 
 ---
 
@@ -247,7 +251,15 @@ The command requires a string value.
 [time:number]
 ```
 
-A numerical value.
+A numerical value, can handle scientific notation `1.25e+4` and `inf`, however values above $10^{can cause many bugs.
+
+It is often stored as a floating point number, such as a single for positions and rotations* or a double for world number.
+
+(Verifiable by max values around $10^{38}$ and $10^{308}$)
+
+*Rotations still work up to $10^{40}$ and i don't know why.
+
+> **TODO:** look into behavior of all systems for high number values and at `inf`.
 
 ---
 
@@ -328,6 +340,26 @@ Object UIDs change when:
 Therefore, code relying on hard-coded UIDs can break after the next server/map load.
 
 Object names do not change automatically when this happens.
+
+### % referencing
+
+If instead of using a name or UID you use `%`, it will reference the latest created object.
+
+Example:
+
+```text
+create 1 part 0 10 10
+tween 1 % 2 0 30 10 0 0 0
+```
+
+This can be very useful in controlling AI, as you can spawn a bot, then in the following line reference it to direct it.
+
+(do note that using % referencing only works consistently for 1-time uses, as the latest created object changes anytime another is created).
+
+```text
+bot spawn 1 PL5_Rifleman 0 10 40 0
+bot direct % direct 0 0 0
+```
 
 ### Recommendation
 
@@ -1416,6 +1448,14 @@ Rotation: {0, 45, 0}
 ```
 
 > ⚠️ Duplicate object names can cause ambiguous or unexpected behavior.
+
+### inf behavior
+
+If an object is moved to a value which the engine cannot handle, the position of the object defaults to:
+```text
+Position: 0.000, -1000000.000, 0.000
+Rotation: -0.000, 0.000, 0.000
+```
 
 ---
 
