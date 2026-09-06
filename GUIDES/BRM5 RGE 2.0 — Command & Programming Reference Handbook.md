@@ -251,7 +251,7 @@ The command requires a string value.
 [time:number]
 ```
 
-A numerical value, can handle scientific notation `1.25e+4` and `inf`, however values above $10^{can cause many bugs.
+A numerical value, can handle scientific notation `1.25e+4` and `inf`, however values above $10^{20}$ can cause many bugs.
 
 It is often stored as a floating point number, such as a single for positions and rotations* or a double for world number.
 
