@@ -8,11 +8,13 @@ All behavior stated in this file has been verified and checked
 
 # There are only 3 ways to have cmds run without any "manual" input
 
-## 1 TG input :
+## TG input :
 
 1. Trigger activate ...
 
-## Which mean there are only 2 player inputs :
+## 2 player / entity inputs :
 
 2. Interaction
-3. Detection
+3. Entity Detection
+
+This means, to have TGs executing in the first place, you must have some sort of "player" input.
