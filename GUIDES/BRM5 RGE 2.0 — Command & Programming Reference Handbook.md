@@ -1,10 +1,10 @@
-# BRM5 RGE 2.0 — Command & Programming Reference
+# BRM5 RGE 2.0 — Command & Programming Reference Handbook
 
 > **Status:** Work in progress
 >
 > **Game:** Roblox — Blackhawk Rescue Mission 5 (BRM5)
 > 
-> **System:** RGE 2.0
+> **System:** RGE 2.0+
 > 
 > **Purpose:** Reference for writing and understanding RGE commands and trigger-based programs.
 
