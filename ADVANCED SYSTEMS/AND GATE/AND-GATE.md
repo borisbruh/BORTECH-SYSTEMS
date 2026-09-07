@@ -58,9 +58,19 @@ trigger reset 10 LED_WHITE
 reset
 ```
 
+LED_BLACK
+```text
+color 10 %led 0 0 0
+wait 0.01
+trigger activate 10 {next input_off TG name}
+```
 
-
-
+LED_WHITE
+```text
+color 10 %led 255 255 255
+wait 0.01
+trigger activate 10 {next input_on TG name}
+```
 
 
 
