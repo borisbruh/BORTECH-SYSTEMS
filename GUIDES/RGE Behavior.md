@@ -61,3 +61,13 @@ Helicopters
 Ground
 ```
 All of the above entities are checked at the very center of them, if they are in a detection volume.
+
+
+
+
+
+
+A TG's cmds will only execute: if (a whitelisted entity is detected in the TOBJ Volume)
+
+A TG's cmds will only execute: if (entity is in the TOJB's volume && entity is in the TG whitelist)
+
